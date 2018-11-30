@@ -72,7 +72,7 @@ function registerValidSW(swUrl: string) {
                 // available; please refresh.' message in your web app.
                 console.log('New content is available; please refresh.');
               } else {
-                // At this point, everything has been precached.
+                // At this point, everything has been pre-cached.
                 // It's the perfect time to display a
                 // 'Content is cached for offline use.' message.
                 console.log('Content is cached for offline use.');
@@ -114,10 +114,11 @@ function checkValidServiceWorker(swUrl: string) {
     });
 }
 
+// noinspection JSUnusedGlobalSymbols
 export function unregister() {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.ready.then(registration => {
-      registration.unregister();
+      registration.unregister().then();
     });
   }
 }
