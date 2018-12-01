@@ -6,9 +6,8 @@ import './MainMap.css'
 
 import {Map as LeafLetMap, TileLayer} from "react-leaflet";
 
-const position: [number, number] = [48.755517, 2.281012];
-const MainMap = () => (
-    <LeafLetMap center={position} zoom={17}>
+const MainMap = ({lat, lng, zoom}: any) => (
+    <LeafLetMap center={[lat, lng]} zoom={zoom}>
         <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"

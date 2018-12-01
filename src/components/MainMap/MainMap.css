@@ -1,5 +1,5 @@
 /*noinspection CssUnusedSymbol*/
-#root, .leaflet-container {
+.leaflet-container {
   height: 100%;
   width: 100%;
 }
