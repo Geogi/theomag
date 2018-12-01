@@ -2,12 +2,12 @@ import 'leaflet-defaulticon-compatibility';
 import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css';
 import 'leaflet/dist/leaflet.css';
 import * as React from 'react';
-import './App.css'
+import './MainMap.css'
 
 import {Map as LeafLetMap, TileLayer} from "react-leaflet";
 
 const position: [number, number] = [48.755517, 2.281012];
-const App = () => (
+const MainMap = () => (
     <LeafLetMap center={position} zoom={17}>
         <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -16,4 +16,4 @@ const App = () => (
     </LeafLetMap>
 );
 
-export default App;
+export default MainMap;
