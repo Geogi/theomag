@@ -3,7 +3,10 @@ import {connect} from "react-redux";
 import {ptoAdd} from "../actions";
 import MainMap from "../components/MainMap/MainMap";
 
-const mapStateToProps = (state: any) => state.map;
+const mapStateToProps = (state: any) => ({
+    ...state.map,
+    pto: state.pto
+});
 
 // noinspection JSUnusedGlobalSymbols: wired automatically by `connect`
 const mapDispatchToProps = (dispatch: any) => ({
