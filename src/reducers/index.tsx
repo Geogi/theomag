@@ -10,15 +10,15 @@ const defaultMap = {
 };
 
 const mapReducer = reduceReducer(
-    handleAction(mapReset, () => defaultMap, defaultMap),
-    () => defaultMap
+    handleAction(mapReset, () => defaultMap, defaultMap)
 );
 
 const defaultPto: IPtoPos[] = [];
 
 const ptoReducer = reduceReducer(
-    handleAction(ptoAdd, (state, action) => action.payload && state.concat([action.payload]), defaultPto),
-    () => defaultPto
+    handleAction(ptoAdd, (state, action) => {
+        return action.payload && state.concat([action.payload]);
+    }, defaultPto)
 );
 
 export default combineReducers({
