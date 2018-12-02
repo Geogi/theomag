@@ -5,11 +5,11 @@ import {createStore} from "redux";
 import {devToolsEnhancer} from "redux-devtools-extension";
 import App from './components/App';
 import './index.css';
-import mapState from "./reducers";
+import reducers from "./reducers";
 import registerServiceWorker from './registerServiceWorker';
 
 const store = createStore(
-    mapState,
+    reducers,
     devToolsEnhancer({})
 );
 
@@ -19,4 +19,5 @@ ReactDOM.render(
     </Provider>,
   document.getElementById('root') as HTMLElement
 );
+
 registerServiceWorker();
