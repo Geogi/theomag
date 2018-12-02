@@ -5,8 +5,8 @@ import * as uuid from "uuid";
 import {IPtoPos, mapReset, ptoAdd} from "../actions";
 
 const defaultMap = {
-    lat: 48.755517,
-    lng: 2.281012,
+    lat: 48.785238,
+    lng: 2.328381,
     zoom: 17,
 };
 

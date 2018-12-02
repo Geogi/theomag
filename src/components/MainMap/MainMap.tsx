@@ -7,7 +7,7 @@ import {IPto} from "../../reducers";
 import './MainMap.css';
 
 const MainMap = ({lat, lng, zoom, ptoAdd, pto}: any) => (
-    <LeafLetMap center={[lat, lng]} zoom={zoom} onclick={ptoAdd}>
+    <LeafLetMap center={[lat, lng]} zoom={zoom} ondblclick={ptoAdd} doubleClickZoom={false}>
         <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
