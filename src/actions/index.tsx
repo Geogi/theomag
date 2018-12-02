@@ -1,5 +1,9 @@
 import {createAction} from "redux-actions";
 
-export const aCenterMap = createAction(
-    'CENTER_MAP',
-    ({lng, lat, zoom}: any) => ({lng, lat, zoom}));
+export interface IPtoPos {
+    x: number,
+    y: number,
+}
+
+export const mapReset = createAction('MAP_RESET', () => ({}));
+export const ptoAdd = createAction('PTO_ADD', (pos: IPtoPos) => pos);

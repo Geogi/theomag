@@ -1,15 +1,15 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {Provider} from "react-redux";
-import {combineReducers, createStore} from "redux";
+import {createStore} from "redux";
 import {devToolsEnhancer} from "redux-devtools-extension";
 import App from './components/App';
 import './index.css';
-import * as reducers from "./reducers";
+import reducers from "./reducers";
 import registerServiceWorker from './registerServiceWorker';
 
 const store = createStore(
-    combineReducers(reducers),
+    reducers,
     devToolsEnhancer({})
 );
 
