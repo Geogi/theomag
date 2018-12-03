@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^3.6.1",
+    "@material-ui/icons": "^3.0.1",
     "leaflet": "^1.3.4",
     "leaflet-defaulticon-compatibility": "^0.1.1",
+    "localforage": "^1.7.3",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-leaflet": "^2.1.2",
@@ -13,6 +16,8 @@
     "reduce-reducers": "^0.4.3",
     "redux": "^4.0.1",
     "redux-actions": "^2.6.4",
+    "redux-persist": "^5.10.0",
+    "redux-persist-transform-compress": "Geogi/redux-persist-transform-compress#patch-1-with-artifacts",
     "uuid": "^3.3.2"
   },
   "scripts": {
