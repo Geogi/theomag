@@ -2,7 +2,7 @@ import reduceReducer from "reduce-reducers";
 import {combineReducers} from "redux";
 import {handleAction} from "redux-actions";
 import * as uuid from "uuid";
-import {IPtoPos, mapReset, ptoAdd} from "../actions";
+import {IPtoPos, mapReset, ptoAdd, ptoDel} from "../actions";
 
 const defaultMap = {
     lat: 48.785238,
@@ -21,12 +21,13 @@ export interface IPto extends IPtoPos {
 const defaultPto: IPto[] = [];
 
 const ptoReducer = reduceReducer(
-    handleAction(ptoAdd, (state, action) => {
-        return action.payload && state.concat([{
+    handleAction(ptoAdd, (state, action) =>
+        action.payload && state.concat([{
             key: uuid(),
             ...action.payload
-        }]);
-    }, defaultPto)
+        }]), defaultPto),
+    handleAction(ptoDel, (state, action) =>
+        state.filter(({key}) => key !== action.payload), defaultPto),
 );
 
 export default combineReducers({

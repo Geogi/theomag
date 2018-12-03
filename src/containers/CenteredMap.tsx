@@ -1,6 +1,6 @@
 import {LeafletMouseEvent} from "leaflet";
 import {connect} from "react-redux";
-import {ptoAdd} from "../actions";
+import {ptoAdd, ptoDel} from "../actions";
 import MainMap from "../components/MainMap/MainMap";
 
 const mapStateToProps = (state: any) => ({
@@ -13,7 +13,8 @@ const mapDispatchToProps = (dispatch: any) => ({
     ptoAdd: (e: LeafletMouseEvent) => dispatch(ptoAdd({
         x: e.latlng.lng,
         y: e.latlng.lat,
-    }))
+    })),
+    ptoDel: (key: string) => () => dispatch(ptoDel(key))
 });
 
 export default connect(
