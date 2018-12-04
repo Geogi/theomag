@@ -1,7 +1,9 @@
 import Button from "@material-ui/core/Button/Button";
 import {CallMerge, Delete, Dns, FullscreenExit, Home, Transform} from "@material-ui/icons";
-import {Icon} from "leaflet";
+import {DivIcon} from "leaflet";
 import * as React from "react";
+import {ReactElement} from "react";
+import * as ReactDOM from 'react-dom';
 import {Marker, Popup} from "react-leaflet";
 import {IMapItem} from "../../../reducers/ptoReducer";
 
@@ -24,24 +26,30 @@ export enum ItemTypeCode {
 }
 
 interface IItemType {
-    leafIcon: Icon,
+    leafIcon: DivIcon,
     name: ItemTypeCode,
-    symbol: JSX.Element,
+    symbol: ReactElement<any>,
 }
 
 export const itemTypes: IItemType[] = [
-    {name: ItemTypeCode.OJN, symbol: <Dns/>, namePart: "dns"},
-    {name: ItemTypeCode.DP, symbol: <Transform/>, namePart: "transform"},
-    {name: ItemTypeCode.CP, symbol: <CallMerge/>, namePart: "call_merge"},
-    {name: ItemTypeCode.OE, symbol: <Home/>, namePart: "home"},
-    {name: ItemTypeCode.JU, symbol: <FullscreenExit/>, namePart: "fullscreen_exit"},
-].map(({name, symbol, namePart}) => ({
-    leafIcon: new Icon({
-        iconUrl: `/assets/baseline_${namePart}_black_24dp.png`
-    }),
-    name,
-    symbol,
-}));
+    {name: ItemTypeCode.OJN, symbol: <Dns/>},
+    {name: ItemTypeCode.DP, symbol: <Transform/>},
+    {name: ItemTypeCode.CP, symbol: <CallMerge/>},
+    {name: ItemTypeCode.OE, symbol: <Home/>},
+    {name: ItemTypeCode.JU, symbol: <FullscreenExit/>},
+].map(({name, symbol}) => {
+    const div = document.createElement('div');
+    ReactDOM.render(symbol, div);
+    const ret = {
+        leafIcon: new DivIcon({
+            html: div.innerHTML
+        }),
+        name,
+        symbol,
+    };
+    ReactDOM.unmountComponentAtNode(div);
+    return ret
+});
 
 const findIcon = (me: ItemTypeCode) => itemTypes.find(({name}) => me === name)!.leafIcon;
 
