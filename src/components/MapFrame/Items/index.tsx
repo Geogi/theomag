@@ -1,5 +1,5 @@
 import Button from "@material-ui/core/Button/Button";
-import {Delete} from "@material-ui/icons";
+import {CallMerge, Delete, Dns, Home, Transform} from "@material-ui/icons";
 import * as React from "react";
 import {Marker, Popup} from "react-leaflet";
 import {IMapItem} from "../../../reducers/ptoReducer";
@@ -13,6 +13,18 @@ export interface IItemsFromState {
 export interface IItemsForDispatch {
     eqDel: any,
 }
+
+interface IItemType {
+    name: string,
+    symbol: JSX.Element,
+}
+
+export const ITEM_TYPES: IItemType[] = [
+    {name: "OJN", symbol: <Dns/>},
+    {name: "DP", symbol: <Transform/>},
+    {name: "CP", symbol: <CallMerge/>},
+    {name: "OE", symbol: <Home/>},
+];
 
 const Items = (p: IItemsProps) => (
     <React.Fragment>
