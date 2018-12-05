@@ -6,6 +6,7 @@ import * as React from 'react';
 import {Map as LeafLetMap} from "react-leaflet";
 import ItemsCont from "../../containers/ItemsCont";
 import NewElementCont from "../../containers/NewElementCont";
+import RoutesCont from "../../containers/RoutesCont";
 import './index.css';
 import Layers from "./Layers";
 
@@ -25,5 +26,6 @@ export default (p: IMapFrameProps) => (
         <Layers/>
         <ItemsCont/>
         <NewElementCont/>
+        <RoutesCont/>
     </LeafLetMap>
 );

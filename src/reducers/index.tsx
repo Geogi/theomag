@@ -9,7 +9,7 @@ export interface IRootState {
 
 const rootReducer = combineReducers<IRootState>({
     map: mapReducer,
-    pto: ptoReducer
+    pto: ptoReducer,
 });
 
 export default rootReducer;

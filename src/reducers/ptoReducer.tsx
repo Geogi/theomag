@@ -2,8 +2,8 @@ import {LatLng} from "leaflet";
 import reduceReducer from "reduce-reducers";
 import {handleAction} from "redux-actions";
 import * as uuid from "uuid";
-import {ptoAdd, ptoDel} from "../actions";
-import {ItemTypeCode} from "../components/MapFrame/Items";
+import {ptoAdd, ptoDel, routeAdd, routeStart} from "../actions";
+import {ItemTypeCode} from "../model/Item";
 
 export interface IMapItem {
     pos: LatLng,
@@ -11,18 +11,50 @@ export interface IMapItem {
     typ: ItemTypeCode,
 }
 
-export type IItemsState = IMapItem[];
+export interface IRoute {
+    downstream: string,
+    key: string,
+    upstream: string,
+}
 
-const defaultPto: IItemsState = [];
+export interface IItemsState {
+    items: IMapItem[],
+    routes: IRoute[],
+    routeFromItem: string | null;
+}
+
+const defaultPto: IItemsState = {
+    items: [],
+    routeFromItem: null,
+    routes: [],
+};
 
 const ptoReducer = reduceReducer(
-    handleAction(ptoAdd, (state, action) => state.concat([{
-        key: uuid(),
-        pos: action.payload!.pos,
-        typ: action.payload!.typ,
-    }]), defaultPto),
-    handleAction(ptoDel, (state, action) =>
-        state.filter(({key}) => key !== action.payload), defaultPto),
+    handleAction(ptoAdd, (state, action) => ({
+        ...state,
+        items: state.items.concat([{
+            key: uuid(),
+            pos: action.payload!.pos,
+            typ: action.payload!.typ,
+        }])
+    }), defaultPto),
+    handleAction(ptoDel, (state, action) => ({
+        ...state,
+        items: state.items.filter(({key}) => key !== action.payload!)
+    }), defaultPto),
+    handleAction(routeStart, (state, action) => ({
+        ...state,
+        routeFromItem: action.payload!,
+    }), defaultPto),
+    handleAction(routeAdd, (state, action) => ({
+        ...state,
+        routeFromItem: null,
+        routes: state.routes.concat([{
+            downstream: action.payload!.downstream,
+            key: uuid(),
+            upstream: action.payload!.upstream,
+        }])
+    }), defaultPto),
 );
 
 export default ptoReducer;

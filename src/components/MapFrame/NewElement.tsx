@@ -2,7 +2,7 @@ import Button from "@material-ui/core/Button/Button";
 import {LatLng} from "leaflet";
 import * as React from "react";
 import {Popup} from "react-leaflet";
-import {itemTypes} from "../Items";
+import {itemTypes} from "../../model/Item";
 
 export type INewElementProps = INewElementFromState & INewElementForDispatch;
 
@@ -21,7 +21,7 @@ const NewElement = (p: INewElementProps) => (
         {p.showing &&
         <Popup position={p.pos} onClose={p.close}>
             {itemTypes.map(({name, symbol}) =>
-                <Button key={name} variant="text" color="primary" onClick={p.add(p.pos, name)}>
+                <Button key={name} variant="text" onClick={p.add(p.pos, name)}>
                     {symbol}
                 </Button>
             )}
