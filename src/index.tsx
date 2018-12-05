@@ -1,3 +1,4 @@
+import {install} from '@material-ui/styles'
 import * as localforage from "localforage";
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
@@ -11,6 +12,8 @@ import App from './components/App';
 import './index.css';
 import rootReducer from "./reducers";
 import registerServiceWorker from './registerServiceWorker';
+
+install();
 
 const persistConfig = {
     key: 'root',

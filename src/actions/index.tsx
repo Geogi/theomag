@@ -24,3 +24,8 @@ interface IRouteAddPayload {
 export const routeAdd = createAction("ROUTE_ADD", (payload: IRouteAddPayload) => payload);
 export const routeStart = createAction("ROUTE_START", (key: string) => key);
 export const routeDel = createAction("ROUTE_DEL", (key: string) => key);
+
+export const checkRun = createAction("CHECK_RUN", () => {/**/
+});
+export const checkCancel = createAction("CHECK_CANCEL", () => {/**/
+});

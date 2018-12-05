@@ -16,26 +16,30 @@ interface IItemType {
     leafIcon: DivIcon,
     name: ItemTypeCode,
     symbol: ReactElement<any>,
+    defaultCapacity: number,
 }
 
-export const itemTypes: IItemType[] = [
-    {name: ItemTypeCode.OJN, symbol: <Dns/>},
-    {name: ItemTypeCode.DP, symbol: <Transform/>},
-    {name: ItemTypeCode.CP, symbol: <CallMerge/>},
-    {name: ItemTypeCode.OE, symbol: <Home/>},
-    {name: ItemTypeCode.JU, symbol: <FullscreenExit/>},
-].map(({name, symbol}) => {
+const itemTypesNoIcon = [
+    {name: ItemTypeCode.OJN, symbol: <Dns/>, defaultCapacity: 144},
+    {name: ItemTypeCode.DP, symbol: <Transform/>, defaultCapacity: 48},
+    {name: ItemTypeCode.CP, symbol: <CallMerge/>, defaultCapacity: 6},
+    {name: ItemTypeCode.OE, symbol: <Home/>, defaultCapacity: 1},
+    {name: ItemTypeCode.JU, symbol: <FullscreenExit/>, defaultCapacity: Infinity},
+];
+
+export const itemTypes: IItemType[] = itemTypesNoIcon.map((values) => {
     const div = document.createElement('div');
-    ReactDOM.render(symbol, div);
+    ReactDOM.render(values.symbol, div);
     const ret = {
+        ...values,
         leafIcon: new DivIcon({
             html: div.innerHTML
         }),
-        name,
-        symbol,
     };
     ReactDOM.unmountComponentAtNode(div);
     return ret
 });
 
 export const findIcon = (me: ItemTypeCode) => itemTypes.find(({name}) => me === name)!.leafIcon;
+export const findDefaultCapacity = (me: ItemTypeCode) =>
+    itemTypes.find(({name}) => me === name)!.defaultCapacity;

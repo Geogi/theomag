@@ -1,9 +1,9 @@
 import {LatLng} from "leaflet";
 import {connect} from "react-redux";
-import {popupNewHide, ptoAdd} from "../actions";
-import NewElement, {INewElementForDispatch, INewElementFromState} from "../components/MapFrame/NewElement";
-import {ItemTypeCode} from "../model/Item";
-import {IRootState} from "../reducers";
+import {popupNewHide, ptoAdd} from "../../actions";
+import NewElement, {INewElementForDispatch, INewElementFromState} from "../../components/MapFrame/NewElement";
+import {ItemTypeCode} from "../../model/Item";
+import {IRootState} from "../../reducers";
 
 const mapStateToProps = (state: IRootState): INewElementFromState => ({
     pos: state.map.newPos,

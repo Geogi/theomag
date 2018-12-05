@@ -24,6 +24,9 @@ const Items = (p: IItemsProps) => (
             <Marker key={t.key} position={t.pos} icon={findIcon(t.typ)}
                     onClick={p.routeAddMaybe(p.routeFromItem, t.key)}>
                 <Popup>
+                    <p>
+                        Capacity: {t.capacity}
+                    </p>
                     <Button variant="text" onClick={p.eqDel(t.key)}>
                         <Delete/>
                     </Button>

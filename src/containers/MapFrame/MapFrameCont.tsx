@@ -1,8 +1,8 @@
 import {LeafletMouseEvent} from "leaflet";
 import {connect} from "react-redux";
-import {popupNewShow} from "../actions";
-import MapFrame, {IMapFrameForDispatch, IMapFrameFromState} from "../components/MapFrame";
-import {IRootState} from "../reducers";
+import {popupNewShow} from "../../actions";
+import MapFrame, {IMapFrameForDispatch, IMapFrameFromState} from "../../components/MapFrame";
+import {IRootState} from "../../reducers";
 
 const mapStateToProps = (state: IRootState): IMapFrameFromState => ({
     center: state.map.center,
