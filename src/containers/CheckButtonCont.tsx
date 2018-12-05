@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import {checkRun} from "../actions";
+import {checkRun} from "../actions/thunks";
 import CheckButton, {ICheckButtonForDispatch, ICheckButtonFromState} from "../components/FloatingUi/CheckButton";
 import {IRootState} from "../reducers";
 

@@ -2,8 +2,10 @@ import {LatLng} from "leaflet";
 import {createAction} from "redux-actions";
 import {ItemTypeCode} from "../model/Item";
 
-export const mapReset = createAction('MAP_RESET', () => {/**/
-});
+const nothing = () => { /*nothing*/
+};
+
+export const mapReset = createAction('MAP_RESET', () => nothing());
 
 interface IPtoAddPayload {
     pos: LatLng,
@@ -13,8 +15,7 @@ interface IPtoAddPayload {
 export const ptoAdd = createAction('PTO_ADD', (payload: IPtoAddPayload) => payload);
 export const ptoDel = createAction('PTO_DEL', (key: string) => key);
 export const popupNewShow = createAction('POPUP_NEW_SHOW', (pos: LatLng) => pos);
-export const popupNewHide = createAction('POPUP_NEW_HIDE', () => {/**/
-});
+export const popupNewHide = createAction('POPUP_NEW_HIDE', () => nothing());
 
 interface IRouteAddPayload {
     upstream: string,
@@ -25,7 +26,6 @@ export const routeAdd = createAction("ROUTE_ADD", (payload: IRouteAddPayload) =>
 export const routeStart = createAction("ROUTE_START", (key: string) => key);
 export const routeDel = createAction("ROUTE_DEL", (key: string) => key);
 
-export const checkRun = createAction("CHECK_RUN", () => {/**/
-});
-export const checkCancel = createAction("CHECK_CANCEL", () => {/**/
-});
+export const checkStart = createAction("CHECK_START", () => nothing());
+export const checkError = createAction("CHECK_ERROR", (e: any) => e);
+export const checkResult = createAction("CHECK_RESULT", (e: any) => e);

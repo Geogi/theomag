@@ -1,6 +1,6 @@
 import reduceReducer from "reduce-reducers";
 import {handleAction} from "redux-actions";
-import {checkCancel, checkRun} from "../actions";
+import {checkError, checkResult, checkStart} from "../actions";
 
 export interface ICheckState {
     inProgress: boolean
@@ -11,14 +11,18 @@ const defaultCheckState: ICheckState = {
 };
 
 const checkReducer = reduceReducer(
-    handleAction(checkRun, (state) => ({
+    handleAction(checkStart, (state) => ({
         ...state,
         inProgress: true
     }), defaultCheckState),
-    handleAction(checkCancel, (state) => ({
+    handleAction(checkError, (state) => ({
         ...state,
         inProgress: false
-    }), defaultCheckState)
+    }), defaultCheckState),
+    handleAction(checkResult, (state) => ({
+        ...state,
+        inProgress: false
+    }), defaultCheckState),
 );
 
 export default checkReducer;
