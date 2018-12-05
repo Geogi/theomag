@@ -1,5 +1,4 @@
-/*noinspection CssUnusedSymbol: this is inserted by Leafleat*/
-.leaflet-container {
+.LeafLetMap {
   height: 100%;
   width: 100%;
 }

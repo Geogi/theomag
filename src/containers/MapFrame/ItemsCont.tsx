@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
-import {ptoDel, routeAdd, routeStart} from "../actions";
-import Items, {IItemsForDispatch, IItemsFromState} from "../components/MapFrame/Items";
-import {IRootState} from "../reducers";
+import {ptoDel, routeAdd, routeStart} from "../../actions";
+import Items, {IItemsForDispatch, IItemsFromState} from "../../components/MapFrame/Items";
+import {IRootState} from "../../reducers";
 
 const mapStateToProps = (state: IRootState): IItemsFromState => state.pto;
 

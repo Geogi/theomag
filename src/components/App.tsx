@@ -1,9 +1,12 @@
 import * as React from "react";
-import MapFrameCont from "../containers/MapFrameCont";
-import './App.css';
+import CheckButtonCont from "../containers/CheckButtonCont";
+import MapFrameCont from "../containers/MapFrame/MapFrameCont";
 
 const App = () => (
-    <MapFrameCont/>
+    <React.Fragment>
+        <MapFrameCont/>
+        <CheckButtonCont/>
+    </React.Fragment>
 );
 
 export default App;

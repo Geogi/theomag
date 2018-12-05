@@ -3,12 +3,13 @@ import reduceReducer from "reduce-reducers";
 import {handleAction} from "redux-actions";
 import * as uuid from "uuid";
 import {ptoAdd, ptoDel, routeAdd, routeDel, routeStart} from "../actions";
-import {ItemTypeCode} from "../model/Item";
+import {findDefaultCapacity, ItemTypeCode} from "../model/Item";
 
 export interface IMapItem {
     pos: LatLng,
     key: string,
     typ: ItemTypeCode,
+    capacity: number,
 }
 
 export interface IRoute {
@@ -33,9 +34,10 @@ const ptoReducer = reduceReducer(
     handleAction(ptoAdd, (state, action) => ({
         ...state,
         items: state.items.concat([{
+            capacity: findDefaultCapacity(action.payload!.typ),
             key: uuid(),
             pos: action.payload!.pos,
-            typ: action.payload!.typ,
+            typ: action.payload!.typ
         }])
     }), defaultPto),
     handleAction(ptoDel, (state, action) => ({

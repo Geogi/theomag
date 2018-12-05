@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
-import {routeDel} from "../actions";
-import Routes, {IRoutesForDispatch, IRoutesFromState} from "../components/MapFrame/Routes";
-import {IRootState} from "../reducers";
+import {routeDel} from "../../actions";
+import Routes, {IRoutesForDispatch, IRoutesFromState} from "../../components/MapFrame/Routes";
+import {IRootState} from "../../reducers";
 
 const mapStateToProps = (state: IRootState): IRoutesFromState => ({
     routes: state.pto.routes.map((r) => ({

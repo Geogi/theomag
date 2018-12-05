@@ -4,9 +4,9 @@ import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility
 import 'leaflet/dist/leaflet.css';
 import * as React from 'react';
 import {Map as LeafLetMap} from "react-leaflet";
-import ItemsCont from "../../containers/ItemsCont";
-import NewElementCont from "../../containers/NewElementCont";
-import RoutesCont from "../../containers/RoutesCont";
+import ItemsCont from "../../containers/MapFrame/ItemsCont";
+import NewElementCont from "../../containers/MapFrame/NewElementCont";
+import RoutesCont from "../../containers/MapFrame/RoutesCont";
 import './index.css';
 import Layers from "./Layers";
 
@@ -21,11 +21,14 @@ export interface IMapFrameForDispatch {
     showItemPopup: any,
 }
 
-export default (p: IMapFrameProps) => (
-    <LeafLetMap center={p.center} zoom={p.zoom} ondblclick={p.showItemPopup} doubleClickZoom={false}>
+const MapFrame = (p: IMapFrameProps) => (
+    <LeafLetMap className="LeafLetMap" center={p.center} zoom={p.zoom} ondblclick={p.showItemPopup}
+                doubleClickZoom={false}>
         <Layers/>
         <ItemsCont/>
         <NewElementCont/>
         <RoutesCont/>
     </LeafLetMap>
 );
+
+export default MapFrame;
