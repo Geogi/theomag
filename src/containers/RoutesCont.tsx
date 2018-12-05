@@ -1,4 +1,5 @@
 import {connect} from "react-redux";
+import {routeDel} from "../actions";
 import Routes, {IRoutesForDispatch, IRoutesFromState} from "../components/MapFrame/Routes";
 import {IRootState} from "../reducers";
 
@@ -10,8 +11,9 @@ const mapStateToProps = (state: IRootState): IRoutesFromState => ({
     }))
 });
 
-// noinspection JSUnusedLocalSymbols: TODO
-const mapDispatchToProps = (dispatch: any): IRoutesForDispatch => ({});
+const mapDispatchToProps = (dispatch: any): IRoutesForDispatch => ({
+    routeDel: (key: string) => () => dispatch(routeDel(key))
+});
 
 const RoutesCont = connect(
     mapStateToProps,

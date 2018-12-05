@@ -2,7 +2,7 @@ import {LatLng} from "leaflet";
 import reduceReducer from "reduce-reducers";
 import {handleAction} from "redux-actions";
 import * as uuid from "uuid";
-import {ptoAdd, ptoDel, routeAdd, routeStart} from "../actions";
+import {ptoAdd, ptoDel, routeAdd, routeDel, routeStart} from "../actions";
 import {ItemTypeCode} from "../model/Item";
 
 export interface IMapItem {
@@ -54,6 +54,10 @@ const ptoReducer = reduceReducer(
             key: uuid(),
             upstream: action.payload!.upstream,
         }])
+    }), defaultPto),
+    handleAction(routeDel, (state, action) => ({
+        ...state,
+        routes: state.routes.filter(({key}) => key !== action.payload!)
     }), defaultPto),
 );
 
