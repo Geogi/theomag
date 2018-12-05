@@ -4,7 +4,7 @@ import * as ReactDOM from 'react-dom';
 import {Provider} from "react-redux";
 import {createStore} from "redux";
 import {devToolsEnhancer} from "redux-devtools-extension";
-import {persistReducer, persistStore} from 'redux-persist'
+import {persistReducer, persistStore} from "redux-persist";
 import createCompressor from "redux-persist-transform-compress";
 import {PersistGate} from "redux-persist/integration/react";
 import App from './components/App';
@@ -29,7 +29,7 @@ const persistor = persistStore(store);
 
 ReactDOM.render(
     <Provider store={store}>
-        <PersistGate loading={<div>loading...</div>} persistor={persistor}>
+        <PersistGate loading={null} persistor={persistor}>
             <App/>
         </PersistGate>
     </Provider>,

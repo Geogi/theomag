@@ -1,9 +1,9 @@
 import * as React from "react";
-import CenteredMap from "../containers/CenteredMap";
+import MapFrameCont from "../containers/MapFrameCont";
 import './App.css';
 
 const App = () => (
-    <CenteredMap/>
+    <MapFrameCont/>
 );
 
 export default App;
