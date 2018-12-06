@@ -2,14 +2,24 @@ import {connect} from "react-redux";
 import {checkRun} from "../../actions/thunks";
 import CheckButton, {ICheckButtonForDispatch, ICheckButtonFromState} from "../../components/FloatingUi/CheckButton";
 import {IRootState} from "../../reducers";
+import {ICheckRequest} from "../../remote";
 
 const mapStateToProps = (state: IRootState): ICheckButtonFromState => ({
-    dataToSend: state.pto,
+    dataToSend: {
+        equipments: state.pto.items.map((p) => ({
+            capacity: p.capacity,
+            key: p.key
+        })),
+        routes: state.pto.routes.map((r) => ({
+            downstreamKey: state.pto.items.find((p) => p.key === r.downstream)!.key,
+            upstreamKey: state.pto.items.find((p) => p.key === r.upstream)!.key,
+        }))
+    },
     inProgress: state.check.inProgress,
 });
 
 const mapDispatchToProps = (dispatch: any): ICheckButtonForDispatch => ({
-    click: (data: any) => () => dispatch(checkRun(data))
+    click: (data: ICheckRequest) => () => dispatch(checkRun(data))
 });
 
 const CheckButtonCont = connect(

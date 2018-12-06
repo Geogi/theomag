@@ -2,11 +2,12 @@ import {Fab} from "@material-ui/core";
 import {Autorenew, Check} from "@material-ui/icons";
 import {withStyles} from "@material-ui/styles";
 import * as React from "react";
+import {ICheckRequest} from "../../../remote";
 import './index.css'
 
 export interface ICheckButtonFromState {
     inProgress: boolean,
-    dataToSend: any
+    dataToSend: ICheckRequest
 }
 
 export interface ICheckButtonForDispatch {

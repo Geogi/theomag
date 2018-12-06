@@ -1,13 +1,11 @@
 import axios from 'axios';
+import {ICheckRequest, ICheckResponse, url} from "../remote";
 import {checkError, checkResult, checkStart} from "./index";
 
-const url = "http://127.0.0.1:8000/check";
-
-// noinspection JSUnusedLocalSymbols
-export const checkRun = (data: any) => (dispatch: any) => {
+export const checkRun = (data: ICheckRequest) => (dispatch: any) => {
     dispatch(checkStart());
-    return axios.post(url, {message: "ping"}).then(
-        (response) => dispatch(checkResult(response.data.map(({message}: any) => message))),
+    return axios.post<ICheckResponse>(url, data).then(
+        (response) => dispatch(checkResult(response.data)),
         (error) => dispatch(checkError(error.toString()))
     );
 };
