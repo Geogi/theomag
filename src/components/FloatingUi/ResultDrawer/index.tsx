@@ -9,7 +9,7 @@ import {
     Toolbar,
     Typography
 } from "@material-ui/core";
-import {Close, Warning} from "@material-ui/icons";
+import {CheckCircle, Close, Warning} from "@material-ui/icons";
 import {withStyles} from "@material-ui/styles";
 import * as React from "react";
 import {IMessage} from "../../../reducers/checkReducer";
@@ -66,6 +66,16 @@ const ResultDrawer = (p: IResultDrawerProps) => (
                     </ListItemText>
                 </ListItem>
             )}
+            {p.errors.length === 0 &&
+            <ListItem>
+                <ListItemIcon>
+                    <CheckCircle/>
+                </ListItemIcon>
+                <ListItemText>
+                    No problem found.
+                </ListItemText>
+            </ListItem>
+            }
         </ListOffset>
     </DrawerW>
 );
