@@ -1,11 +1,11 @@
 import {
-    AppBar,
-    Button,
     Drawer,
+    IconButton,
     List,
     ListItem,
     ListItemIcon,
     ListItemText,
+    Theme,
     Toolbar,
     Typography
 } from "@material-ui/core";
@@ -25,7 +25,7 @@ export interface IResultDrawerForDispatch {
 
 export type IResultDrawerProps = IResultDrawerFromState & IResultDrawerForDispatch;
 
-const DrawerW = withStyles({
+const DrawerFixedWidth = withStyles({
     paper: {
         width: 360,
     },
@@ -37,25 +37,23 @@ const TypographyRight = withStyles({
     },
 })(Typography);
 
-const ListOffset = withStyles({
+const ToolbarPrimary = withStyles((theme: Theme) => ({
     root: {
-        marginTop: 48,
-    },
-})(List);
+        backgroundColor: theme.palette.primary.main
+    }
+}))(Toolbar);
 
 const ResultDrawer = (p: IResultDrawerProps) => (
-    <DrawerW anchor="left" open={p.open} onClose={p.close} variant="persistent">
-        <AppBar>
-            <Toolbar variant="dense">
-                <TypographyRight variant="h6">
-                    Results
-                </TypographyRight>
-                <Button>
-                    <Close onClick={p.close}/>
-                </Button>
-            </Toolbar>
-        </AppBar>
-        <ListOffset>
+    <DrawerFixedWidth anchor="left" open={p.open} onClose={p.close} variant="persistent">
+        <ToolbarPrimary variant="dense">
+            <TypographyRight variant="h6">
+                Results
+            </TypographyRight>
+            <IconButton>
+                <Close onClick={p.close}/>
+            </IconButton>
+        </ToolbarPrimary>
+        <List>
             {p.errors.map((err) =>
                 <ListItem key={err.key}>
                     <ListItemIcon>
@@ -76,8 +74,8 @@ const ResultDrawer = (p: IResultDrawerProps) => (
                 </ListItemText>
             </ListItem>
             }
-        </ListOffset>
-    </DrawerW>
+        </List>
+    </DrawerFixedWidth>
 );
 
 export default ResultDrawer;

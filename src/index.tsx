@@ -1,3 +1,5 @@
+import {createMuiTheme} from "@material-ui/core";
+import MuiThemeProvider from "@material-ui/core/es/styles/MuiThemeProvider";
 import {install} from '@material-ui/styles'
 import * as localforage from "localforage";
 import * as React from 'react';
@@ -33,12 +35,20 @@ const store = createStore(
 
 const persistor = persistStore(store);
 
+const theme = createMuiTheme({
+    typography: {
+        useNextVariants: true,
+    },
+});
+
 ReactDOM.render(
-    <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-            <App/>
-        </PersistGate>
-    </Provider>,
+    <MuiThemeProvider theme={theme}>
+        <Provider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
+                <App/>
+            </PersistGate>
+        </Provider>
+    </MuiThemeProvider>,
     document.getElementById('root') as HTMLElement
 );
 

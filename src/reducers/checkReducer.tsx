@@ -37,9 +37,10 @@ const checkReducer = reduceReducer(
         resultDrawerErrors: makeIds([JSON.stringify(action.payload!)]),
         resultDrawerOpen: true
     }), defaultCheckState),
-    handleAction(checkResult, (state) => ({
+    handleAction(checkResult, (state, action) => ({
         ...state,
         inProgress: false,
+        resultDrawerErrors: makeIds(action.payload!),
         resultDrawerOpen: true,
     }), defaultCheckState),
     handleAction(resultDrawerClose, (state) => ({

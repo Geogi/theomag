@@ -4,11 +4,12 @@ import CheckButton, {ICheckButtonForDispatch, ICheckButtonFromState} from "../..
 import {IRootState} from "../../reducers";
 
 const mapStateToProps = (state: IRootState): ICheckButtonFromState => ({
-    inProgress: state.check.inProgress
+    dataToSend: state.pto,
+    inProgress: state.check.inProgress,
 });
 
 const mapDispatchToProps = (dispatch: any): ICheckButtonForDispatch => ({
-    click: () => dispatch(checkRun())
+    click: (data: any) => () => dispatch(checkRun(data))
 });
 
 const CheckButtonCont = connect(
