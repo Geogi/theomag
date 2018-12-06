@@ -29,3 +29,4 @@ export const routeDel = createAction("ROUTE_DEL", (key: string) => key);
 export const checkStart = createAction("CHECK_START", () => nothing());
 export const checkError = createAction("CHECK_ERROR", (e: any) => e);
 export const checkResult = createAction("CHECK_RESULT", (e: any) => e);
+export const resultDrawerClose = createAction("RESULT_DRAWER_CLOSE", () => nothing());

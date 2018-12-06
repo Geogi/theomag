@@ -23,7 +23,7 @@ export interface IMapFrameForDispatch {
 
 const MapFrame = (p: IMapFrameProps) => (
     <LeafLetMap className="LeafLetMap" center={p.center} zoom={p.zoom} ondblclick={p.showItemPopup}
-                doubleClickZoom={false}>
+                doubleClickZoom={false} zoomControl={false}>
         <Layers/>
         <ItemsCont/>
         <NewElementCont/>
