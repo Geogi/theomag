@@ -1,13 +1,16 @@
+import {createMuiTheme} from "@material-ui/core";
+import MuiThemeProvider from "@material-ui/core/es/styles/MuiThemeProvider";
 import {install} from '@material-ui/styles'
 import * as localforage from "localforage";
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {Provider} from "react-redux";
-import {createStore} from "redux";
-import {devToolsEnhancer} from "redux-devtools-extension";
+import {applyMiddleware, createStore} from "redux";
+import {composeWithDevTools} from "redux-devtools-extension";
 import {persistReducer, persistStore} from "redux-persist";
 import createCompressor from "redux-persist-transform-compress";
 import {PersistGate} from "redux-persist/integration/react";
+import thunk from "redux-thunk";
 import App from './components/App';
 import './index.css';
 import rootReducer from "./reducers";
@@ -25,17 +28,27 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = createStore(
     persistedReducer,
-    devToolsEnhancer({})
+    composeWithDevTools(
+        applyMiddleware(thunk)
+    )
 );
 
 const persistor = persistStore(store);
 
+const theme = createMuiTheme({
+    typography: {
+        useNextVariants: true,
+    },
+});
+
 ReactDOM.render(
-    <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-            <App/>
-        </PersistGate>
-    </Provider>,
+    <MuiThemeProvider theme={theme}>
+        <Provider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
+                <App/>
+            </PersistGate>
+        </Provider>
+    </MuiThemeProvider>,
     document.getElementById('root') as HTMLElement
 );
 
